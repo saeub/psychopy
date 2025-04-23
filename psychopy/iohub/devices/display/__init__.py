@@ -267,7 +267,7 @@ class Display(Device):
         """
         left, top, right, bottom = self.getConfiguration()['runtime_info']['coordinate_bounds']
         bounds_width = right - left
-        bounds_height = bottom - top
+        bounds_height = top - bottom
         stimulus_area_width, stimulus_area_height = (
             self.getConfiguration()['stimulus_area']['width'],
             self.getConfiguration()['stimulus_area']['height']
@@ -276,8 +276,8 @@ class Display(Device):
             left += (bounds_width - stimulus_area_width) / 2
             right = left + stimulus_area_width
         if stimulus_area_height is not None:
-            top += (bounds_height - stimulus_area_height) / 2
-            bottom = top + stimulus_area_height
+            bottom += (bounds_height - stimulus_area_height) / 2
+            top = bottom + stimulus_area_height
         return left, top, right, bottom
 
     def getDefaultEyeDistance(self):
