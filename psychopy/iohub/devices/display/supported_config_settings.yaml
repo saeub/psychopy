@@ -20,6 +20,13 @@ Display:
             min_length: 0
             max_length: 1
     origin: center
+    stimulus_area:
+        width:
+            IOHUB_FLOAT:
+                min: 1.0
+        height:
+            IOHUB_FLOAT:
+                min: 1.0
     physical_dimensions:
         width:
             IOHUB_FLOAT:
