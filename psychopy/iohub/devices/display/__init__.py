@@ -265,7 +265,20 @@ class Display(Device):
             tuple: (left, top, right, bottom) coordinate bounds for the Display represented in Display.getCoordinateType() units.
 
         """
-        return self.getConfiguration()['runtime_info']['coordinate_bounds']
+        left, top, right, bottom = self.getConfiguration()['runtime_info']['coordinate_bounds']
+        bounds_width = right - left
+        bounds_height = bottom - top
+        stimulus_area_width, stimulus_area_height = (
+            self.getConfiguration()['stimulus_area']['width'],
+            self.getConfiguration()['stimulus_area']['height']
+        )
+        if stimulus_area_width is not None:
+            left += (bounds_width - stimulus_area_width) / 2
+            right = left + stimulus_area_width
+        if stimulus_area_height is not None:
+            top += (bounds_height - stimulus_area_height) / 2
+            bottom = top + stimulus_area_height
+        return left, top, right, bottom
 
     def getDefaultEyeDistance(self):
         """Returns the default  distance from the particpant's eye to the
